@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 		UserModel model = new UserModel();
 		model.setName(data.getName());
 		model.setMobile(data.getMobile());
-		String password = md5Encoder.encodePassword(data.getPassword(), null);
+		String password = md5Encoder.encodePassword(data.getPassword(), data.getName());
 		model.setPassword(password);
 		model.setCreateDate(new Date());
 		model.setAvailable(true);
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 	public UserModel queryUser(UserForm userForm) {
 		Map<String, Object> fields = new HashMap<>();
 		fields.put(UserModel.NAME, userForm.getName());
-		String password = md5Encoder.encodePassword(userForm.getPassword(), null);
+		String password = md5Encoder.encodePassword(userForm.getPassword(), userForm.getName());
 		fields.put(UserModel.PASSWORD, password);
 		List<UserModel> list = commonService.getEntitiesByFields(UserModel.class, fields);
 		// if (list != null && list.size() > 0) {
