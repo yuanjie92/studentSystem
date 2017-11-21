@@ -1,0 +1,36 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <import resource="classpath:connection.xml"/>    
+    
+    <bean id="studentDao" class="com.shsxt.dao.impl.StudentDaoImpl">
+    	<property name="commonDao" ref="commonDao"/>
+    </bean>
+    
+    <bean id="userDao" class="com.shsxt.dao.impl.UserDaoImpl">
+    	<property name="commonDao" ref="commonDao"/>
+    </bean>
+    
+    <bean id="studentService" class="com.shsxt.service.impl.StudentServiceImpl">
+    	<property name="commonService" ref="commonService"/>
+    	<property name="studentDao" ref="studentDao"/>
+    	<property name="studentConvert" ref="studentConvert"></property>
+    </bean>
+    
+    <bean id="studentConvert" class="com.shsxt.convert.StudentConvert"></bean>
+    
+    <bean id="userService" class="com.shsxt.service.impl.UserServiceImpl">
+    	<property name="commonService" ref="commonService"/>
+    	<property name="userDao" ref="userDao"></property>
+    	<property name="md5Encoder" ref="md5Encoder"></property>
+    </bean>
+    
+    <bean id="md5Encoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder">
+    </bean>
+</beans>
