@@ -17,11 +17,11 @@
 	
 	<form:form action="login" method="post" commandName="userForm">
 		<font color="red"><form:errors path="name"/></font><br>
-		用户名：<form:input path="name"/><br>
+		<spring:message code="user.name" />：<form:input path="name"/><br>
 		<c:if test="${not empty name}">
 			<font color="red">${name }</font>
 		</c:if>
-		密码：<form:password path="password"/><br>
+		<spring:message code="user.password" />：<form:password path="password"/><br>
 		<c:if test="${not empty password}">
 			<font color="red">${password }</font>
 		</c:if>

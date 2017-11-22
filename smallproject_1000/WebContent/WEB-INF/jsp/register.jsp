@@ -26,14 +26,14 @@
 	
 	<form:form action="register" enctype="multipart/form-data" method="post" commandName="userForm">
 		<font color="red"><form:errors path="name"/></font><br>
-		用户大脑袋:<input type="file" name="photo"/><br>
-		用户名：<form:input path="name" id="name" /><br>
-		mobile:<input type="text" name="mobile"><br>
+		<spring:message code="user.photo" />:<input type="file" name="photo"/><br>
+		<spring:message code="user.name" />:<form:input path="name" id="name" /><br>
+		<spring:message code="user.mobile" />:<input type="text" name="mobile"><br>
 		<c:if test="${not empty password}">
 			<font color="red">${password }</font>
 		</c:if>
-		password:<input type="password" name="password"><br>
-		confirmPassword:<input type="password" name="confirmPassword"><br>
+		<spring:message code="user.password" />:<input type="password" name="password"><br>
+		<spring:message code="user.password.confirm" />:<input type="password" name="confirmPassword"><br>
 		<input type="submit" value="register"/>
 	
 	</form:form>

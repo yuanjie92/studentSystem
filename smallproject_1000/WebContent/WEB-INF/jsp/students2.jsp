@@ -13,9 +13,9 @@
 
 <body>
 userInfo:
-name:${sessionScope.userModel.name },<br>
+<spring:message code="user.name" />:${sessionScope.userModel.name },<br>
 <c:url var="photoUrl" value="/media/userPhoto/${sessionScope.userModel.photo}"/>
-大脑袋:<img alt="" src="${photoUrl }">
+<spring:message code="user.photo" />:<img alt="" src="${photoUrl }">
 
 
 

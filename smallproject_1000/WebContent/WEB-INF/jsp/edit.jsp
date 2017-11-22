@@ -11,10 +11,10 @@
 	<hr>
 	<form action="updateStudentById" method="post">
 		<input type="hidden" name="id" value="${stuData.id }" >
-		name:<input type="text" name="name" value="${stuData.name }" ><br>
-		class:<input type="text" name="clazz" value="${stuData.clazz }" ><br>
-		birthday:<input name="birthday" value="${stuData.birthday }" ><br>
-		<input type="submit" value="修改" >
+		<spring:message code="student.form.username" />:<input type="text" name="name" value="${stuData.name }" ><br>
+		<spring:message code="student.form.clazz" />:<input type="text" name="clazz" value="${stuData.clazz }" ><br>
+		<spring:message code="student.form.birthday" />:<input name="birthday" value="${stuData.birthday }" ><br>
+		<input type="submit" value='<spring:message code="student.form.update" />' >
 	</form>
 </body>
 </html>
