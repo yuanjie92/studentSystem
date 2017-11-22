@@ -18,7 +18,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="<%=path%>/js/jQuery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jQuery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/register.js"></script>
 </head>
 <body>
