@@ -1,7 +1,11 @@
 package com.shsxt.controller;
 
-import javax.annotation.Resource;
+import java.util.List;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shsxt.model.UserModel;
 import com.shsxt.model.form.UserForm;
 import com.shsxt.service.UserService;
 import com.sun.istack.internal.logging.Logger;
@@ -46,6 +52,20 @@ public class RegisterController {
 		}
 
 		userService.save(userForm);
-		return "redirect:loadStudentsByFields";
+		return "redirect:login";
+	}
+
+	@RequestMapping(value = "/unique", method = RequestMethod.POST)
+	@ResponseBody
+	public String unique(HttpServletRequest request) {
+		String name = request.getParameter("name");
+		List<UserModel> list = userService.uniqueByName(name);
+		String data = "";
+		if (CollectionUtils.isNotEmpty(list)) {
+
+			data = list.get(0).toString();
+		}
+		data = data.toString();
+		return data;
 	}
 }

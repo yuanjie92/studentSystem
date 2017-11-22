@@ -25,7 +25,7 @@
 		<c:if test="${not empty password}">
 			<font color="red">${password }</font>
 		</c:if>
-		<!-- password:<input type="password" name="password"><br> -->
+		<%-- 记住密码：<form:checkbox path="remember" value="true"/><br> --%>
 		<input type="submit" value="login"/>
 	</form:form>
 	

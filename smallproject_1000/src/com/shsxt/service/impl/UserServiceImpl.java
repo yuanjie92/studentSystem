@@ -57,6 +57,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.queryUserByNameAndPassword(name, newPassword);
 	}
 
+	@Override
+	public List<UserModel> uniqueByName(String name) {
+		return commonService.getEntitiesByField(UserModel.class, name, name);
+	}
+
 	public CommonService getCommonService() {
 		return commonService;
 	}

@@ -29,6 +29,10 @@ public class CommonService {
 		return commonDao.getEntitiesByFields(clazz, fields);
 	}
 
+	public <T> List<T> getEntitiesByField(Class<T> clazz, String field, Object value) {
+		return commonDao.getEntitiesByField(clazz, field, value);
+	}
+
 	public CommonDao getCommonDao() {
 		return commonDao;
 	}
