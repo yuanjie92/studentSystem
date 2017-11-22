@@ -14,34 +14,46 @@ import javax.servlet.http.HttpSession;
 
 import com.shsxt.model.UserModel;
 
-public class LoginFilter implements Filter {
+
+public class LoginFilter implements Filter
+{
 
 	@Override
-	public void destroy() {
+	public void destroy()
+	{
 
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
+	{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		String uri = req.getRequestURI();
-		if (uri.contains("/login") || uri.contains("/register") || uri.contains("/logout") || uri.contains("/js")) {
+		System.out.println("uri:" + uri);
+		if (uri.contains("/login") || uri.contains("/js") || uri.contains("/register") || uri.contains("/logout")
+				|| uri.contains("/js"))
+		{
 			chain.doFilter(req, resp);
-		} else {
+		}
+		else
+		{
 			HttpSession session = req.getSession();
 			UserModel user = (UserModel) session.getAttribute("userModel");
-			if (null == user || "".equals(user)) {
+			if (null == user || "".equals(user))
+			{
 				resp.sendRedirect("login");
-			} else {
+			}
+			else
+			{
 				chain.doFilter(req, resp);
 			}
 		}
 	}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig arg0) throws ServletException
+	{
 
 	}
 
