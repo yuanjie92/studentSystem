@@ -8,10 +8,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>students list</title>
+<title>students list2</title>
 </head>
+
 <body>
-	<h1>students list</h1>
+userInfo:
+name:${sessionScope.userModel.name },<br>
+<c:url var="photoUrl" value="/media/userPhoto/${sessionScope.userModel.photo}"/>
+大脑袋:<img alt="" src="${photoUrl }">
+
+
+
+	<h1>students list2</h1>
 	<hr>
 	<a href="addStudent">add Student</a>&nbsp;
 	<a href="logout">logout</a>

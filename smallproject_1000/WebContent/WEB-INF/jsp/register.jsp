@@ -24,8 +24,9 @@
 <body>
 	<h2>register</h2>
 	
-	<form:form action="register" method="post" commandName="userForm">
+	<form:form action="register" enctype="multipart/form-data" method="post" commandName="userForm">
 		<font color="red"><form:errors path="name"/></font><br>
+		用户大脑袋:<input type="file" name="photo"/><br>
 		用户名：<form:input path="name" id="name" /><br>
 		mobile:<input type="text" name="mobile"><br>
 		<c:if test="${not empty password}">
