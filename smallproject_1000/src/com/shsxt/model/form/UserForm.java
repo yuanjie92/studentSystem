@@ -1,58 +1,82 @@
 package com.shsxt.model.form;
 
-public class UserForm {
+public class UserForm
+{
 	private Integer id;
 	private String name;
 	private String mobile;
 	private String password;
 	private String confirmPassword;
 	private boolean isNew;
+	private String pothoPath;
 
-	public boolean isNew() {
+	public String getPothoPath()
+	{
+		return pothoPath;
+	}
+
+	public void setPothoPath(String pothoPath)
+	{
+		this.pothoPath = pothoPath;
+	}
+
+	public boolean isNew()
+	{
 		return isNew;
 	}
 
-	public void setNew(boolean isNew) {
+	public void setNew(boolean isNew)
+	{
 		this.isNew = isNew;
 	}
 
-	public Integer getId() {
+	public Integer getId()
+	{
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Integer id)
+	{
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public String getMobile() {
+	public String getMobile()
+	{
 		return mobile;
 	}
 
-	public void setMobile(String mobile) {
+	public void setMobile(String mobile)
+	{
 		this.mobile = mobile;
 	}
 
-	public String getPassword() {
+	public String getPassword()
+	{
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(String password)
+	{
 		this.password = password;
 	}
 
-	public String getConfirmPassword() {
+	public String getConfirmPassword()
+	{
 		return confirmPassword;
 	}
 
-	public void setConfirmPassword(String confirmPassword) {
+	public void setConfirmPassword(String confirmPassword)
+	{
 		this.confirmPassword = confirmPassword;
 	}
 
