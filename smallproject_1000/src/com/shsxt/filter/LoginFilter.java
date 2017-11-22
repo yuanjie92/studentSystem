@@ -27,7 +27,7 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		String uri = req.getRequestURI();
-		if (uri.contains("login") || uri.contains("register") || uri.contains("logout")) {
+		if (uri.contains("/login") || uri.contains("/register") || uri.contains("/logout") || uri.contains("/js")) {
 			chain.doFilter(req, resp);
 		} else {
 			HttpSession session = req.getSession();
