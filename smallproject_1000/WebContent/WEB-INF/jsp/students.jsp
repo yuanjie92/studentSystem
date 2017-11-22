@@ -8,10 +8,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>students list</title>
+<title>students list 1</title>
 </head>
+
 <body>
-	<h1>students list</h1>
+	<h1>students list 1</h1>
 	<hr>
 	<a href="addStudent">add Student</a>
 	<table border="1">
