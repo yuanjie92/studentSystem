@@ -13,9 +13,12 @@ import javax.persistence.Table;
 public class UserModel
 {
 
+	public static final String ID = "id";
 	public static final String NAME = "name";
 	public static final String PASSWORD = "password";
-
+	public static final String MOBILE = "mobile";
+	public static final String CREATEDATE = "createDate";
+	public static final String AVAILABLE = "available";
 	private Integer id;
 	private String name;
 	private String mobile;
