@@ -25,7 +25,7 @@
 		<c:if test="${not empty password}">
 			<font color="red">${password }</font>
 		</c:if>
-		记住密码：<form:checkbox path="rememberMe"/><br>
+		<spring:message code="user.rememberMe" />：<form:checkbox path="rememberMe"/><br>
 		<input type="submit" value="login"/>
 	</form:form>
 	

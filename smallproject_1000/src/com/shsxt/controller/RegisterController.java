@@ -85,10 +85,9 @@ public class RegisterController {
 	@ResponseBody
 	public String unique(@RequestParam("name") String name) {
 		List<UserModel> list = userService.uniqueByName(name);
-		String data = "0";
+		String data = "true";
 		if (CollectionUtils.isNotEmpty(list)) {
-
-			data = "1";
+			data = "false";
 		}
 		return data;
 	}

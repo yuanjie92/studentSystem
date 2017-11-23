@@ -6,7 +6,7 @@ $(function(){
 			url:"register/unique",
 			data:{"name":$name.val()},
 			success:function(data){
-				if(data=="1"){
+				if(data=="false"){
 					$name.val("");
 					$("#tipMsg").text("该用户名已存在，请重新输入！！！");
 				}else{
