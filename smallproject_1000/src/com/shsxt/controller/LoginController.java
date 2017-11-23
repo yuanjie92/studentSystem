@@ -18,8 +18,10 @@ import com.shsxt.model.form.UserForm;
 import com.shsxt.service.UserService;
 import com.sun.istack.internal.logging.Logger;
 
+
 @Controller
-public class LoginController {
+public class LoginController
+{
 
 	private Logger logger = Logger.getLogger(getClass());
 
@@ -30,19 +32,22 @@ public class LoginController {
 	private Validator userValidator;
 
 	@RequestMapping("/login")
-	public String login(Model model) {
+	public String login(Model model)
+	{
 		model.addAttribute("userForm", new UserForm());
 		return "login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(UserForm userForm, BindingResult bindingResult, Model model, HttpSession session,
-			HttpServletResponse response) {
+			HttpServletResponse response)
+	{
 		logger.info(String.format("login [%s]...", ReflectionToStringBuilder.toString(userForm)));
 
 		userValidator.validate(userForm, bindingResult);
 
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors())
+		{
 
 			logger.info(String.format("user error log: %s", ReflectionToStringBuilder.toString(bindingResult)));
 			model.addAttribute("userForm", userForm);
@@ -50,23 +55,27 @@ public class LoginController {
 		}
 
 		UserModel userModel = userService.queryUser(userForm);
-		// UserModel userModel =
-		// userService.queryUserByNameAndPassword(userForm.getName(),
-		// userForm.getPassword());
-		if (null == userModel) {
+
+		if (null == userModel)
+		{
 			return "login";
 		}
-		if (userForm.isRememberMe()) {
-			Cookie cookie = new Cookie("rememberMe", userForm.getName() + "($)" + userForm.getPassword());
+		if (userForm.isRememberMe())
+		{
+			String token = userService.createToken(userForm.getName(), userModel.getPassword());
+			logger.info(String.format("remember-Me token is %s", token));
+			Cookie cookie = new Cookie("rememberMe", token);
 			cookie.setMaxAge(60 * 60 * 24);
 			response.addCookie(cookie);
 		}
+
 		session.setAttribute("userModel", userModel);
 		return "redirect:loadStudentsByFields";
 	}
 
 	@RequestMapping("/logout")
-	public String logout(HttpSession session, Model model) {
+	public String logout(HttpSession session, Model model)
+	{
 		model.addAttribute("userForm", new UserForm());
 		session.invalidate();
 		return "login";
