@@ -5,7 +5,9 @@ import java.util.List;
 import com.shsxt.model.UserModel;
 import com.shsxt.model.form.UserForm;
 
-public interface UserService {
+
+public interface UserService
+{
 
 	void save(UserForm data);
 
@@ -14,5 +16,9 @@ public interface UserService {
 	UserModel queryUserByNameAndPassword(String name, String password);
 
 	List<UserModel> uniqueByName(String name);
+
+	String createToken(String name, String password);
+
+	UserModel queryUserByName(String name);
 
 }
