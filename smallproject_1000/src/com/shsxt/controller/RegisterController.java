@@ -7,7 +7,6 @@ import java.io.OutputStream;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.collections.CollectionUtils;
@@ -27,11 +26,9 @@ import com.shsxt.model.form.UserForm;
 import com.shsxt.service.UserService;
 import com.sun.istack.internal.logging.Logger;
 
-
 @Controller
 @RequestMapping("/register")
-public class RegisterController
-{
+public class RegisterController {
 
 	private Logger logger = Logger.getLogger(getClass());
 
@@ -42,29 +39,26 @@ public class RegisterController
 	private Validator userValidator;
 
 	@RequestMapping
-	public String register(Model model)
-	{
+	public String register(Model model) {
 		model.addAttribute("userForm", new UserForm());
 		logger.info("register page ...");
 		return "register";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String register(UserForm userForm, BindingResult bindingResult, @RequestParam("photo") MultipartFile photoFile,
-			Model model) throws IOException
-	{
+	public String register(UserForm userForm, BindingResult bindingResult,
+			@RequestParam("photo") MultipartFile photoFile, Model model) throws IOException {
 		logger.info(String.format("register user [%s]...", ReflectionToStringBuilder.toString(userForm)));
 
 		userValidator.validate(userForm, bindingResult);
 
-		if (bindingResult.hasErrors())
-		{
+		if (bindingResult.hasErrors()) {
 			logger.info("user error log: %s" + ReflectionToStringBuilder.toString(bindingResult));
 			model.addAttribute("userForm", userForm);
 			return "register";
 		}
 
-		//upload photo
+		// upload photo
 		String fileName = photoFile.getOriginalFilename();
 
 		String newFileName = System.currentTimeMillis() + "_" + fileName;
@@ -89,17 +83,13 @@ public class RegisterController
 
 	@RequestMapping(value = "/unique", method = RequestMethod.POST)
 	@ResponseBody
-	public String unique(HttpServletRequest request)
-	{
-		String name = request.getParameter("name");
+	public String unique(@RequestParam("name") String name) {
 		List<UserModel> list = userService.uniqueByName(name);
-		String data = "";
-		if (CollectionUtils.isNotEmpty(list))
-		{
+		String data = "0";
+		if (CollectionUtils.isNotEmpty(list)) {
 
-			data = list.get(0).toString();
+			data = "1";
 		}
-		data = data.toString();
 		return data;
 	}
 }

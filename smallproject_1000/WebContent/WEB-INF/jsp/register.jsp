@@ -9,8 +9,6 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
-	System.out.println("path:"+path);//path:/smallproject_1000
-	System.out.println("basePath:"+basePath);//basePath:http://localhost:8080/smallproject_1000
 %>
 
 <!DOCTYPE html >
@@ -27,13 +25,13 @@
 	<form:form action="register" enctype="multipart/form-data" method="post" commandName="userForm">
 		<font color="red"><form:errors path="name"/></font><br>
 		<spring:message code="user.photo" />:<input type="file" name="photo"/><br>
-		<spring:message code="user.name" />:<form:input path="name" id="name" /><br>
+		<spring:message code="user.name" />:<form:input path="name" id="name" /><span id="tipMsg"></span><br>
 		<spring:message code="user.mobile" />:<input type="text" name="mobile"><br>
 		<c:if test="${not empty password}">
 			<font color="red">${password }</font>
 		</c:if>
 		<spring:message code="user.password" />:<input type="password" name="password"><br>
-		<spring:message code="user.password.confirm" />:<input type="password" name="confirmPassword"><br>
+		<spring:message code="user.psaaword.confirm" />:<input type="password" name="confirmPassword"><br>
 		<input type="submit" value="register"/>
 	
 	</form:form>

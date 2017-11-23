@@ -1,6 +1,8 @@
 package com.shsxt.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
@@ -34,7 +36,8 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(UserForm userForm, BindingResult bindingResult, Model model, HttpSession session) {
+	public String login(UserForm userForm, BindingResult bindingResult, Model model, HttpSession session,
+			HttpServletResponse response) {
 		logger.info(String.format("login [%s]...", ReflectionToStringBuilder.toString(userForm)));
 
 		userValidator.validate(userForm, bindingResult);
@@ -52,6 +55,11 @@ public class LoginController {
 		// userForm.getPassword());
 		if (null == userModel) {
 			return "login";
+		}
+		if (userForm.isRememberMe()) {
+			Cookie cookie = new Cookie("rememberMe", userForm.getName() + "($)" + userForm.getPassword());
+			cookie.setMaxAge(60 * 60 * 24);
+			response.addCookie(cookie);
 		}
 		session.setAttribute("userModel", userModel);
 		return "redirect:loadStudentsByFields";

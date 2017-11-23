@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class StudentModel {
 
 	public static final String NAME = "name";
-	public static final String CLASS = "name";
+	public static final String CLASS = "clazz";
 
 	private Integer id;
 	private String name;
